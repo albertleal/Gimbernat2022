@@ -32,15 +32,15 @@ public class SessionDataSource {
                 if (task.isSuccessful()) {
                     callback.onSuccess(FirebaseAuth.getInstance().getCurrentUser());
                 }else {
-                    callback.onError();
+                    callback.onError("Error sign in");
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                callback.onError();
+                callback.onError("ERROR WITH FIREBASE");
             }
-        });;
+        });
     }
     public void signInAnonymously(final Callback callback) {
         FirebaseAuth.getInstance().signOut();
@@ -50,13 +50,13 @@ public class SessionDataSource {
                 if (task.isSuccessful()) {
                     callback.onSuccess(FirebaseAuth.getInstance().getCurrentUser());
                 }else {
-                    callback.onError();
+                    callback.onError("Error SIGN IN ");
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                callback.onError();
+                callback.onError("ERROR FIREBASE");
             }
         });
 

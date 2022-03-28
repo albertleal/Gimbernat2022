@@ -1,14 +1,14 @@
-package com.albertleal.gimbernat;
+package com.albertleal.gimbernat.scenes.content;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.albertleal.gimbernat.R;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class ContentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_content);
     }
 }
