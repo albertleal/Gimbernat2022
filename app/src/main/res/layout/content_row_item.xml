@@ -33,16 +33,25 @@
                 android:text="ID" />
 
             <TextView
+                android:id="@+id/rowItemCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:textStyle="bold"/>
+
+            <TextView
                 android:id="@+id/rowItemName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NAME" />
+                android:text="NAME"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/rowItemDescription"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="DESCRIPTION" />
+                android:text="DESCRIPTION"
+                android:textStyle="italic"/>
 
 
         </LinearLayout>

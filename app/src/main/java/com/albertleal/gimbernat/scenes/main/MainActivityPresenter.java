@@ -6,7 +6,7 @@ import com.albertleal.gimbernat.scenes.main.interfaces.IMainActivityPresenter;
 
 public class MainActivityPresenter  implements IMainActivityPresenter {
     //MVP Variables
-    private IMainActivity view;
+    private final IMainActivity view;
 
     public MainActivityPresenter(IMainActivity view){
         this.view = view;

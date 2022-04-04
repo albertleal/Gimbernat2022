@@ -3,7 +3,7 @@ package com.albertleal.gimbernat.dasources;
 import androidx.annotation.NonNull;
 
 import com.albertleal.gimbernat.helpers.Callback;
-import com.albertleal.gimbernat.model.ItemModel;
+import com.albertleal.gimbernat.model.CapsuleModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,27 +12,27 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MyCollectionDataSource {
-    public static MyCollectionDataSource shared = new MyCollectionDataSource();
+public class CapsulesDataSource {
+    public static CapsulesDataSource shared = new CapsulesDataSource();
 
-    private ArrayList<ItemModel> itemList = new ArrayList<ItemModel>();
+    private ArrayList<CapsuleModel> capsulesList = new ArrayList<CapsuleModel>();
 
     public void fetch(final Callback callback){
 
         final DatabaseReference databaseReference =
-                FirebaseDatabase.getInstance().getReference().child("myCollectionName");
+                FirebaseDatabase.getInstance().getReference().child("Capsules");
 
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<ItemModel> itemList = new ArrayList<ItemModel>();
+                ArrayList<CapsuleModel> capsulesList = new ArrayList<CapsuleModel>();
 
                 for (DataSnapshot item_snapshot : dataSnapshot.getChildren()) {
-                    itemList.add(new ItemModel(item_snapshot));
+                    capsulesList.add(new CapsuleModel(item_snapshot));
                 }
 
-                MyCollectionDataSource.this.itemList = itemList;
-                callback.onSuccess(itemList);
+                CapsulesDataSource.this.capsulesList = capsulesList;
+                callback.onSuccess(capsulesList);
             }
 
             @Override

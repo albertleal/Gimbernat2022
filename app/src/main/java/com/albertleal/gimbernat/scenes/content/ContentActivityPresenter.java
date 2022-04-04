@@ -9,10 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.albertleal.gimbernat.R;
-import com.albertleal.gimbernat.dasources.MyCollectionDataSource;
-import com.albertleal.gimbernat.dasources.SessionDataSource;
+import com.albertleal.gimbernat.dasources.CapsulesDataSource;
 import com.albertleal.gimbernat.helpers.Callback;
-import com.albertleal.gimbernat.model.ItemModel;
+import com.albertleal.gimbernat.model.CapsuleModel;
 import com.albertleal.gimbernat.scenes.content.interfaces.IContentActivity;
 import com.albertleal.gimbernat.scenes.content.interfaces.IContentActivityPresenter;
 import com.squareup.picasso.Picasso;
@@ -20,23 +19,23 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class ContentActivityPresenter extends BaseAdapter implements IContentActivityPresenter {
-    private ContentActivity view;
+    private final IContentActivity view;
 
     public ContentActivityPresenter(ContentActivity view){
         this.view = view;
     }
 
     private Boolean isFirstTime = true;
-    private ArrayList<ItemModel> itemList = new ArrayList<ItemModel>();
+    private ArrayList<CapsuleModel> itemList = new ArrayList<CapsuleModel>();
 
     @Override
     public void fetchContent() {
-        this.view.showLoading();
+        ContentActivityPresenter.this.view.showLoading();
 
-        MyCollectionDataSource.shared.fetch(new Callback() {
+        CapsulesDataSource.shared.fetch(new Callback() {
             @Override
             public void onSuccess(Object responseObject) {
-                ArrayList<ItemModel> itemList = (ArrayList<ItemModel>) responseObject;
+                ArrayList<CapsuleModel> itemList = (ArrayList<CapsuleModel>) responseObject;
                 ContentActivityPresenter.this.itemList = itemList;
 
                 if(itemList.isEmpty()){
@@ -61,10 +60,6 @@ public class ContentActivityPresenter extends BaseAdapter implements IContentAct
                 ContentActivityPresenter.this.view.hideLoading();
             }
         });
-
-
-
-
     }
 
     @Override
@@ -85,20 +80,21 @@ public class ContentActivityPresenter extends BaseAdapter implements IContentAct
     @Override
     public View getView(int i, View theView, ViewGroup viewGroup) {
         if (theView == null) {
-            LayoutInflater inflater = (LayoutInflater) ContentActivityPresenter.this.view.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) ContentActivityPresenter.this.view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             //Dedicated layout for the item itself
             theView = inflater.inflate(R.layout.content_row_item, viewGroup, false);
         }
 
-        final ItemModel itemModel = (ItemModel) getItem(i);
+        final CapsuleModel capsuleModel = (CapsuleModel) getItem(i);
 
         //Setting the texts
-        ((TextView) theView.findViewById(R.id.rowItemID)).setText(itemModel.id);
-        ((TextView) theView.findViewById(R.id.rowItemDescription)).setText(itemModel.description);
-        ((TextView) theView.findViewById(R.id.rowItemName)).setText(itemModel.name);
+        ((TextView) theView.findViewById(R.id.rowItemID)).setText(capsuleModel.id);
+        ((TextView) theView.findViewById(R.id.rowItemDescription)).setText(capsuleModel.description);
+        ((TextView) theView.findViewById(R.id.rowItemName)).setText(capsuleModel.name);
+        ((TextView) theView.findViewById(R.id.rowItemCategory)).setText("ISPIRAZIONE ITALIANA");
 
 
-        Picasso.get().load(itemModel.url).into((ImageView) theView.findViewById(R.id.contentRowItemImage));
+        Picasso.get().load(capsuleModel.icon).into((ImageView) theView.findViewById(R.id.contentRowItemImage));
 
 
         return theView;

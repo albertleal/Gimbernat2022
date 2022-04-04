@@ -1,6 +1,8 @@
 package com.albertleal.gimbernat.scenes.content.interfaces;
 
-import com.albertleal.gimbernat.model.ItemModel;
+import android.content.Context;
+
+import com.albertleal.gimbernat.model.CapsuleModel;
 
 import java.util.ArrayList;
 
@@ -13,7 +15,9 @@ public interface IContentActivity {
 
     void showEmptyContent();
 
-    void showContent(ArrayList<ItemModel> items);
+    void showContent(ArrayList<CapsuleModel> items);
 
-    void showNewContent(ArrayList<ItemModel> items);
+    void showNewContent(ArrayList<CapsuleModel> items);
+
+    Context getContext();
 }

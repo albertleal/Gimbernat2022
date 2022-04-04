@@ -2,25 +2,28 @@ package com.albertleal.gimbernat.scenes.content;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.albertleal.gimbernat.R;
-import com.albertleal.gimbernat.helpers.Callback;
-import com.albertleal.gimbernat.model.ItemModel;
+import com.albertleal.gimbernat.model.CapsuleModel;
 import com.albertleal.gimbernat.scenes.content.interfaces.IContentActivity;
-import com.albertleal.gimbernat.scenes.main.MainActivityPresenter;
-import com.albertleal.gimbernat.scenes.main.interfaces.IMainActivity;
-import com.albertleal.gimbernat.scenes.welcome.WelcomeActivity;
+import com.squareup.picasso.Picasso;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class ContentActivity extends AppCompatActivity implements IContentActivity {
     private ContentActivityPresenter presenter;
     private ProgressBar spinner;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +66,7 @@ public class ContentActivity extends AppCompatActivity implements IContentActivi
     }
 
     @Override
-    public void showContent(ArrayList<ItemModel> items) {
+    public void showContent(ArrayList<CapsuleModel> items) {
         ContentActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -77,9 +80,15 @@ public class ContentActivity extends AppCompatActivity implements IContentActivi
     }
 
     @Override
-    public void showNewContent(ArrayList<ItemModel> items) {
+    public void showNewContent(ArrayList<CapsuleModel> items) {
         Log.i("CONTENT_ACTIVITY_NEW_CONTENT", ""+items.size());
         ((GridView) findViewById(R.id.contentGrid)).setAdapter(this.presenter);
     }
+
+    @Override
+    public Context getContext() {
+        return ContentActivity.this;
+    }
+
 
 }
