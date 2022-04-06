@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentProvider;
 import android.content.Intent;
+import android.graphics.Camera;
 import android.os.Bundle;
 
 import com.albertleal.gimbernat.R;
 import com.albertleal.gimbernat.dasources.SessionDataSource;
+import com.albertleal.gimbernat.scenes.camera.CameraActivity;
 import com.albertleal.gimbernat.scenes.content.ContentActivity;
 import com.albertleal.gimbernat.scenes.main.interfaces.IMainActivity;
 import com.albertleal.gimbernat.scenes.welcome.WelcomeActivity;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     @Override
     public void navigateToPrivate() {
-        Intent intent = new Intent(MainActivity.this, ContentActivity.class);
+        Intent intent = new Intent(MainActivity.this, CameraActivity.class);
         intent.setAction(Intent.ACTION_VIEW);
         MainActivity.this.startActivity(intent);
     }

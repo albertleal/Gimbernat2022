@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.albertleal.gimbernat">
+
+    <uses-feature android:name="android.hardware.camera.any" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"
+        tools:ignore="ScopedStorage" />
+
 
     <application
         android:allowBackup="true"
@@ -8,9 +18,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Gimber22">
-        <activity android:name=".scenes.content.ContentActivity"></activity>
-        <activity android:name=".scenes.welcome.WelcomeActivity" android:noHistory="true"/>
+        android:theme="@style/Theme.Gimber22"
+        >
+        <activity
+            android:name=".scenes.camera.CameraActivity"
+            android:exported="false" />
+        <activity android:name=".scenes.content.ContentActivity" />
+        <activity
+            android:name=".scenes.welcome.WelcomeActivity"
+            android:noHistory="true" />
         <activity
             android:name=".scenes.main.MainActivity"
             android:exported="true"
